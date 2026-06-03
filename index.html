@@ -296,10 +296,21 @@
 
     <!-- Background Music -->
     <!-- Replace graduation-music.mp3 with your music file -->
-    <audio class="music-player" controls autoplay loop>
-        <source src="graduation-music.mp3" type="audio/mpeg">
-        Your browser does not support audio.
-    </audio>
+ <!-- The hidden audio player -->
+<audio id="bg-music" loop style="display: none;">
+    <source src="graduation-music.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+</audio>
+
+<!-- The script that plays it on any tap or click -->
+<script>
+    document.addEventListener('click', function() {
+        var audio = document.getElementById('bg-music');
+        audio.play().catch(function(error) {
+            console.log("Playback prevented. Waiting for a cleaner user interaction.");
+        });
+    }, { once: true }); // '{ once: true }' ensures this only triggers on the very first tap
+</script>
 
 </body>
 </html>
